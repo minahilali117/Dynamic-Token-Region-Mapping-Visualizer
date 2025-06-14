@@ -11,6 +11,36 @@ The visualizer enables:
 - Support for multilingual prompts (e.g., English, Japanese, Spanish)
 - Saving or displaying the attention heatmap alongside the generated image
 
+## Key Features:
+
+- Hooks into Stable Diffusion's cross-attention layers
+- Supports multilingual prompts (any language supported by the tokenizer)
+- Generates both the image and attention visualization
+- Creates heatmap showing token-region relationships
+- Averages attention across all denoising steps
+
+## Output:
+
+- Generated image
+- Attention heatmap showing which tokens influenced which image regions
+- Saved visualization combining both
+
+## Notes:
+
+- First run will download the Stable Diffusion model (~4GB)
+- Adjust num_inference_steps for quality vs. speed tradeoff
+- The heatmap shows token influence on different spatial regions
+= Brighter colors indicate stronger attention
+
+You can modify the main() function to use your own prompts
+```bash
+visualizer = AttentionMapVisualizer()
+image, attention, tokens = visualizer.generate_and_visualize(
+    prompt="Your prompt here",
+    output_path="output.png"
+)
+```
+
 ## Requirements
 
 Install the required dependencies:
